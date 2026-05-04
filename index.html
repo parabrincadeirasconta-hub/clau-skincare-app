@@ -1,0 +1,340 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Clau Skin Care - Premium Skincare</title>
+  <link rel="stylesheet" href="styles/global.css">
+  <link rel="stylesheet" href="styles/components.css">
+  <link rel="stylesheet" href="styles/pages.css">
+</head>
+<body>
+  <!-- Notificações -->
+  <div id="notification-container" class="notification-container"></div>
+
+  <!-- Header/Navigation -->
+  <header class="header">
+    <nav class="navbar">
+      <div class="navbar-container">
+        <div class="navbar-logo">
+          <h1>Clau</h1>
+          <span class="logo-subtitle">Skin Care</span>
+        </div>
+
+        <ul class="nav-menu" id="navMenu">
+          <li><a href="#" class="nav-link" data-page="shop">Shop</a></li>
+          <li><a href="#" class="nav-link" data-page="about">About</a></li>
+          <li><a href="#" class="nav-link" data-page="contact">Contact</a></li>
+        </ul>
+
+        <div class="navbar-actions">
+          <button class="cart-btn" id="cartBtn">
+            <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor">
+              <circle cx="9" cy="21" r="1"></circle>
+              <circle cx="20" cy="21" r="1"></circle>
+              <path d="M1 1h4l2.68 13.39a2 2 0 0 0 2 1.61h9.72a2 2 0 0 0 2-1.61L23 6H6"></path>
+            </svg>
+            <span class="cart-count" id="cartCount">0</span>
+          </button>
+          <button class="user-btn" id="userBtn">
+            <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor">
+              <path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"></path>
+              <circle cx="12" cy="7" r="4"></circle>
+            </svg>
+          </button>
+        </div>
+      </div>
+    </nav>
+  </header>
+
+  <!-- Main Content -->
+  <main class="main-content">
+    <!-- Login Page -->
+    <section id="loginPage" class="page">
+      <div class="auth-container">
+        <div class="auth-card">
+          <h2>Welcome to Clau</h2>
+          <p class="auth-subtitle">Premium Skincare</p>
+
+          <form id="loginForm" class="auth-form">
+            <div class="form-group">
+              <label for="loginEmail">Email</label>
+              <input type="email" id="loginEmail" placeholder="Enter your email" required>
+            </div>
+
+            <div class="form-group">
+              <label for="loginPassword">Password</label>
+              <input type="password" id="loginPassword" placeholder="Enter your password" required>
+            </div>
+
+            <button type="submit" class="btn btn-primary btn-full">Sign In</button>
+          </form>
+
+          <div class="auth-divider">
+            <span>Don't have an account?</span>
+          </div>
+
+          <button class="btn btn-secondary btn-full" id="toggleRegister">Create Account</button>
+        </div>
+      </div>
+    </section>
+
+    <!-- Register Page -->
+    <section id="registerPage" class="page" style="display: none;">
+      <div class="auth-container">
+        <div class="auth-card">
+          <h2>Join Clau</h2>
+          <p class="auth-subtitle">Create your account</p>
+
+          <form id="registerForm" class="auth-form">
+            <div class="form-group">
+              <label for="registerEmail">Email</label>
+              <input type="email" id="registerEmail" placeholder="Enter your email" required>
+            </div>
+
+            <div class="form-group">
+              <label for="registerPassword">Password</label>
+              <input type="password" id="registerPassword" placeholder="At least 6 characters" required>
+            </div>
+
+            <div class="form-group">
+              <label for="registerConfirmPassword">Confirm Password</label>
+              <input type="password" id="registerConfirmPassword" placeholder="Confirm password" required>
+            </div>
+
+            <button type="submit" class="btn btn-primary btn-full">Create Account</button>
+          </form>
+
+          <button class="btn btn-secondary btn-full" id="toggleLogin">Back to Login</button>
+        </div>
+      </div>
+    </section>
+
+    <!-- Shop Page -->
+    <section id="shopPage" class="page" style="display: none;">
+      <div class="shop-container">
+        <div class="shop-header">
+          <h2>Our Collection</h2>
+          <p>Premium skincare products for your needs</p>
+        </div>
+
+        <div class="shop-filters">
+          <div class="filter-group">
+            <label>Category</label>
+            <select id="categoryFilter" class="filter-select">
+              <option value="all">All Products</option>
+            </select>
+          </div>
+        </div>
+
+        <div class="products-grid" id="productsGrid"></div>
+      </div>
+    </section>
+
+    <!-- Product Detail Page -->
+    <section id="productDetailPage" class="page" style="display: none;">
+      <div class="product-detail-container">
+        <button class="back-btn" id="backBtn">← Back</button>
+        <div class="product-detail" id="productDetail"></div>
+      </div>
+    </section>
+
+    <!-- Cart Page -->
+    <section id="cartPage" class="page" style="display: none;">
+      <div class="cart-container">
+        <h2>Shopping Cart</h2>
+
+        <div class="cart-content">
+          <div class="cart-items" id="cartItems"></div>
+
+          <div class="cart-summary">
+            <div class="summary-item">
+              <span>Subtotal</span>
+              <span id="subtotal">$0.00</span>
+            </div>
+            <div class="summary-item">
+              <span>Shipping</span>
+              <span id="shipping">$0.00</span>
+            </div>
+            <div class="summary-item total">
+              <span>Total</span>
+              <span id="cartTotal">$0.00</span>
+            </div>
+
+            <button class="btn btn-primary btn-full" id="checkoutBtn">Proceed to Checkout</button>
+            <button class="btn btn-secondary btn-full" id="continueShopping">Continue Shopping</button>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Checkout Page -->
+    <section id="checkoutPage" class="page" style="display: none;">
+      <div class="checkout-container">
+        <h2>Checkout</h2>
+
+        <form id="checkoutForm" class="checkout-form">
+          <div class="form-section">
+            <h3>Shipping Address</h3>
+            <div class="form-row">
+              <div class="form-group">
+                <label for="fullName">Full Name</label>
+                <input type="text" id="fullName" placeholder="Your name" required>
+              </div>
+              <div class="form-group">
+                <label for="email">Email</label>
+                <input type="email" id="email" placeholder="your@email.com" required>
+              </div>
+            </div>
+
+            <div class="form-group">
+              <label for="address">Address</label>
+              <input type="text" id="address" placeholder="Street address" required>
+            </div>
+
+            <div class="form-row">
+              <div class="form-group">
+                <label for="city">City</label>
+                <input type="text" id="city" placeholder="City" required>
+              </div>
+              <div class="form-group">
+                <label for="zipcode">ZIP Code</label>
+                <input type="text" id="zipcode" placeholder="12345" required>
+              </div>
+            </div>
+          </div>
+
+          <div class="form-section">
+            <h3>Payment Method</h3>
+            <div class="payment-options">
+              <label class="radio-option">
+                <input type="radio" name="paymentMethod" value="credit_card" checked>
+                <span>Credit Card</span>
+              </label>
+              <label class="radio-option">
+                <input type="radio" name="paymentMethod" value="paypal">
+                <span>PayPal</span>
+              </label>
+            </div>
+          </div>
+
+          <div class="form-section">
+            <h3>Order Summary</h3>
+            <div class="order-summary" id="orderSummary"></div>
+          </div>
+
+          <button type="submit" class="btn btn-primary btn-full">Complete Purchase</button>
+        </form>
+      </div>
+    </section>
+
+    <!-- Orders Page -->
+    <section id="ordersPage" class="page" style="display: none;">
+      <div class="orders-container">
+        <h2>My Orders</h2>
+        <div class="orders-list" id="ordersList"></div>
+      </div>
+    </section>
+
+    <!-- Admin Dashboard -->
+    <section id="adminPage" class="page" style="display: none;">
+      <div class="admin-container">
+        <div class="admin-header">
+          <h2>Admin Dashboard</h2>
+          <button class="logout-btn" id="adminLogout">Logout</button>
+        </div>
+
+        <div class="admin-stats">
+          <div class="stat-card">
+            <h4>Total Revenue</h4>
+            <p class="stat-value" id="statRevenue">$0.00</p>
+          </div>
+          <div class="stat-card">
+            <h4>Total Orders</h4>
+            <p class="stat-value" id="statOrders">0</p>
+          </div>
+          <div class="stat-card">
+            <h4>Products</h4>
+            <p class="stat-value" id="statProducts">0</p>
+          </div>
+          <div class="stat-card">
+            <h4>Pending Orders</h4>
+            <p class="stat-value" id="statPending">0</p>
+          </div>
+        </div>
+
+        <div class="admin-tabs">
+          <button class="tab-btn active" data-tab="products">Products</button>
+          <button class="tab-btn" data-tab="orders">Orders</button>
+        </div>
+
+        <div class="tab-content">
+          <div id="productsTab" class="tab-pane active">
+            <button class="btn btn-primary" id="addProductBtn">+ Add Product</button>
+            <table class="admin-table" id="productsTable">
+              <thead>
+                <tr>
+                  <th>ID</th>
+                  <th>Name</th>
+                  <th>Price</th>
+                  <th>Category</th>
+                  <th>Stock</th>
+                  <th>Actions</th>
+                </tr>
+              </thead>
+              <tbody id="productsTableBody"></tbody>
+            </table>
+          </div>
+
+          <div id="ordersTab" class="tab-pane">
+            <table class="admin-table" id="ordersTable">
+              <thead>
+                <tr>
+                  <th>Order ID</th>
+                  <th>User</th>
+                  <th>Total</th>
+                  <th>Status</th>
+                  <th>Date</th>
+                  <th>Actions</th>
+                </tr>
+              </thead>
+              <tbody id="ordersTableBody"></tbody>
+            </table>
+          </div>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <!-- Footer -->
+  <footer class="footer">
+    <div class="footer-content">
+      <div class="footer-section">
+        <h4>Clau</h4>
+        <p>Premium skincare for everyone</p>
+      </div>
+      <div class="footer-section">
+        <h4>Links</h4>
+        <ul>
+          <li><a href="#">About</a></li>
+          <li><a href="#">Contact</a></li>
+          <li><a href="#">Privacy</a></li>
+        </ul>
+      </div>
+      <div class="footer-section">
+        <h4>Follow</h4>
+        <ul>
+          <li><a href="#">Instagram</a></li>
+          <li><a href="#">Twitter</a></li>
+          <li><a href="#">Facebook</a></li>
+        </ul>
+      </div>
+    </div>
+    <div class="footer-bottom">
+      <p>&copy; 2026 Clau Skin Care. All rights reserved.</p>
+    </div>
+  </footer>
+
+  <script type="module" src="app.js"></script>
+</body>
+</html>
